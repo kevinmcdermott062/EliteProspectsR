@@ -1,13 +1,16 @@
 #Specific user agent
-ua<-httr::user_agent("http://github.com/pbulsink/PliteProspectsR")
+ua<-httr::user_agent("EliteProspects R API http://github.com/pbulsink/EliteProspectsR")
 
-#API Key
-api_key<-'12345'
 
-#Internal API Caller & Parser
+#' EliteProspects Caller
+#'
+#' @param path Path Components of API call
+#' @param params Filter or other parameters of API call
+#'
+#' @return The response from the API call built with path and params
 eliteprospects_api <- function(path, params=list()) {
-  params<-c(params, 'apikey'=api_key)
-  url <- httr::modify_url("http://api.eliteprospects.com/beta/", path=path, query =  params)
+  params<-c(params, 'apikey'=get_api_key())
+  url <- httr::modify_url("http://api.eliteprospects.com/beta/", path=path, query = params)
   resp<-httr::GET(url)
 
   if(httr::http_type(resp) != "application/json") {
@@ -16,11 +19,11 @@ eliteprospects_api <- function(path, params=list()) {
 
   parsed<-jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
-  if (http_error(resp)) {
+  if (httr::http_error(resp)) {
     stop(
       sprintf(
         "EliteProspects API request failed [%s]\n%s\n<%s>",
-        status_code(resp),
+        httr::status_code(resp),
         parsed$message,
         parsed$documentation_url
       ),
@@ -35,10 +38,9 @@ eliteprospects_api <- function(path, params=list()) {
   structure(list(content = parsed, path=path, response = resp), class = "eliteprospects_api")
 }
 
-#Internal print coverage
 print.eliteprospects_api <- function(x, ...) {
   cat("<EliteProspects ", x$path, ">\n", sep="")
-  str(x$content)
+  utils::str(x$content)
   invisible(x)
 }
 
