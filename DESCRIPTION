@@ -1,10 +1,16 @@
 Package: EliteProspectsR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Elite Prospects API
+Version: 0.0.1
 Author: Philip Bulsink
 Maintainer: Philip Bulsink <bulsinkp@gmail.com>
-Description: 
-License: 
-Encoding: UTF-8
+Description: R API for EliteProspects (http://www.eliteprospects.com/).
+License: GPL (>= 3) + file LICENSE
+Imports:
+  httr,
+  jsonlite,
+  utils
+Suggests:
+  testthat
 LazyData: true
+RoxygenNote: 6.0.1
