@@ -7,13 +7,12 @@
 #' @seealso \code{\link{set_api_key}} for setting the API key
 #' @export
 get_api_key <- function(){
-  pat <- Sys.getenv('ELITEPROSPECTS_API')
-  if (identical(pat, "")) {
-    stop("Please set your API key with set_api_key('api key value')",
+  api <- Sys.getenv('ELITEPROSPECTS_API')
+  if (identical(api, "")) {
+    stop("Please set your API key with set_api_key([api_key_value])",
          call. = FALSE)
   }
-
-  pat
+  api
 }
 
 #' Set API Key
@@ -26,6 +25,9 @@ get_api_key <- function(){
 #'
 #' @examples
 #' set_api_key('123abc')
-set_api_key<-function(new_api_key=""){
+set_api_key<-function(new_api_key="DEFAULT_API"){
+  if(is.null(new_api_key) || is.na(new_api_key) || !is.character(new_api_key)){
+    stop("API must be alphanumeric string.")
+  }
   Sys.setenv('ELITEPROSPECTS_API' = new_api_key)
 }

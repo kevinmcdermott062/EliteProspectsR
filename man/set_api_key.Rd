@@ -4,7 +4,7 @@
 \alias{set_api_key}
 \title{Set API Key}
 \usage{
-set_api_key(new_api_key = "")
+set_api_key(new_api_key = "DEFAULT_API")
 }
 \arguments{
 \item{new_api_key}{API key string from eliteprospects.}

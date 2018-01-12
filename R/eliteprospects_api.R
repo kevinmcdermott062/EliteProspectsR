@@ -10,6 +10,8 @@
 #' @example
 #' set_user_agent("EliteProspects R API http://github.com/pbulsink/EliteProspectsR")
 set_user_agent <- function(ua="EliteProspects R API http://github.com/pbulsink/EliteProspectsR"){
+  if(is.null(ua) || is.na(ua) || nchar(ua) == 0 || !is.character(ua))
+    stop("User Agent must be a string of length > 0", call. = FALSE)
   Sys.setenv('ELITEPROSPECTS_UA' = ua)
 }
 
