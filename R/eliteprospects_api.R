@@ -1,5 +1,36 @@
-#Specific user agent
-ua<-httr::user_agent("EliteProspects R API http://github.com/pbulsink/EliteProspectsR")
+#' Set the User Agent String
+#'
+#' @description Set a User Agent string to notify EliteProspects what service is using the API.
+#' Defaults to "EliteProspects R API http://github.com/pbulsink/EliteProspectsR".
+#'
+#' @param ua The User Agent string to use for API calls. Default is "EliteProspects R API http://github.com/pbulsink/EliteProspectsR"
+#'
+#' @export
+#'
+#' @example
+#' set_user_agent("EliteProspects R API http://github.com/pbulsink/EliteProspectsR")
+set_user_agent <- function(ua="EliteProspects R API http://github.com/pbulsink/EliteProspectsR"){
+  Sys.setenv('ELITEPROSPECTS_UA' = ua)
+}
+
+#' Get the User Agent String
+#'
+#' @description Get the set User Agent string for building calls.
+#'
+#' @return the user agent string. Set the httr::user_agent with this string
+#'
+#' @export
+#'
+#' @example
+#' httr::user_agent(get_user_agent())
+get_user_agent <- function(){
+  ua<-Sys.getenv('ELITEPROSPECTS_UA')
+  if(ua == ""){
+    ua<-"EliteProspects R API http://github.com/pbulsink/EliteProspectsR"
+    set_user_agent(ua)
+  }
+  ua
+}
 
 
 #' EliteProspects Caller
@@ -11,6 +42,7 @@ ua<-httr::user_agent("EliteProspects R API http://github.com/pbulsink/EliteProsp
 eliteprospects_api <- function(path, params=list()) {
   params<-c(params, 'apikey'=get_api_key())
   url <- httr::modify_url("http://api.eliteprospects.com/beta/", path=path, query = params)
+  httr::user_agent(get_user_agent())
   resp<-httr::GET(url)
 
   if(httr::http_type(resp) != "application/json") {
