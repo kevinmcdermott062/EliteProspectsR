@@ -11,6 +11,6 @@ getPlayerData <- function(player_id=NULL){
     stop("Please include a numerical player_id. To search for players, use searchPlayerID()")
   }
   result<-eliteprospects_api(path)
-  return(result$content)
+  return(result$content$data)
 }
 

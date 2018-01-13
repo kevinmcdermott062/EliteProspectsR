@@ -12,9 +12,6 @@ set_api_key(new_api_key = "DEFAULT_API")
 \description{
 API keys can be obtained by following the instructions at \url{https://github.com/menmo/eliteprospects-api-documentation}
 }
-\examples{
-set_api_key('123abc')
-}
 \seealso{
 \code{\link{get_api_key}} for getting the API key
 

@@ -5,6 +5,9 @@
 #'
 #' @return The response from the API call built with path and params
 eliteprospects_api <- function(path, params=list()) {
+  if(is.null(path) || is.na(path) || !is.character(path) || path==''){
+    stop("API Call requires character path", .call=FALSE)
+  }
   params<-c(params, 'apikey'=get_api_key())
   path<-paste0("beta/", path)
   url <- httr::modify_url("http://api.eliteprospects.com/", path=path, query = params)
@@ -15,19 +18,17 @@ eliteprospects_api <- function(path, params=list()) {
     stop("API did not return json", call. = FALSE)
   }
 
-  parsed<-jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
-
   if (httr::http_error(resp)) {
     stop(
       sprintf(
-        "EliteProspects API request failed [%s]\n%s\n<%s>",
-        httr::status_code(resp),
-        parsed$message,
-        parsed$documentation_url
+        "EliteProspects API request failed (%s)",
+        httr::status_code(resp)
       ),
       call. = FALSE
     )
   }
+
+  parsed<-jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
   if('status' %in% parsed && parsed$status == 'error'){
     stop(cat("API provided error(s):", parsed$messages[[1]], sep="\n"), call. = FALSE)
