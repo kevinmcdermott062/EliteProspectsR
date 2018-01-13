@@ -1,6 +1,6 @@
 #' testthat
 
-context("Testing api caller backend")
+context("Testing api caller persistent")
 
 test_that("UA Setter/Getter", {
   original_ua<-Sys.getenv("ELITEPROSPECTS_UA")

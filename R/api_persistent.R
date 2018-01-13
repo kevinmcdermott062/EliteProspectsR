@@ -22,9 +22,6 @@ get_api_key <- function(){
 #' @family API functions
 #' @seealso \code{\link{get_api_key}} for getting the API key
 #' @export
-#'
-#' @examples
-#' set_api_key('123abc')
 set_api_key<-function(new_api_key="DEFAULT_API"){
   if(is.null(new_api_key) || is.na(new_api_key) || !is.character(new_api_key)){
     stop("API must be alphanumeric string.")
@@ -40,9 +37,6 @@ set_api_key<-function(new_api_key="DEFAULT_API"){
 #' @param ua The User Agent string to use for API calls. Default is "EliteProspects R API http://github.com/pbulsink/EliteProspectsR"
 #'
 #' @export
-#'
-#' @example
-#' set_user_agent("EliteProspects R API http://github.com/pbulsink/EliteProspectsR")
 set_user_agent <- function(ua="EliteProspects R API http://github.com/pbulsink/EliteProspectsR"){
   if(is.null(ua) || is.na(ua) || nchar(ua) == 0 || !is.character(ua))
     stop("User Agent must be a string of length > 0", call. = FALSE)
@@ -56,9 +50,6 @@ set_user_agent <- function(ua="EliteProspects R API http://github.com/pbulsink/E
 #' @return the user agent string. Set the httr::user_agent with this string
 #'
 #' @export
-#'
-#' @example
-#' httr::user_agent(get_user_agent())
 get_user_agent <- function(){
   ua<-Sys.getenv('ELITEPROSPECTS_UA')
   if(ua == ""){
