@@ -1,0 +1,30 @@
+---
+title: "Filter & Sort"
+author: "Philip Bulsink"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#NHL Top 5 Scorers 2016-16
+
+You want to get the top 5 scorers (total points) for the 2016-17 NHL season.
+
+##API Call
+
+The NHL league ID is 7 and 2016-17 season ID is 176. Query playerstats with a "league.id=7&season.id=176&gameType=REGULAR_SEASON" filter, sorted by "TP:desc" and with "limit=5".
+
+```{r top_5}
+url<-"http://api.eliteprospects.com/beta/playerstats?filter=league.id%3D7%26season.id%3D176%26gameType%3DREGULAR_SEASON&sort=TP%3Adesc&limit=5"
+```
+

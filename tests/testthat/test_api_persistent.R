@@ -27,10 +27,15 @@ test_that("UA Setter/Getter", {
 })
 
 test_that("API Setter/Getter", {
-  original_api<-Sys.getenv("ELITEPROSPECTS_API")
   default_api<-"DEFAULT_API"
 
   test_api<- "TEST_API"
+  tryCatch(
+    original_api<-Sys.getenv("ELITEPROSPECTS_API"),
+    error = message('No previously set API key'),
+    finally = origninal_api<-default_api
+  )
+
   set_api_key(test_api)
   expect_true(get_api_key() == test_api)
   set_api_key()
