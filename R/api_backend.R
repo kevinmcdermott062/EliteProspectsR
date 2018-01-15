@@ -60,3 +60,60 @@ process_filters<-function(filters){
 process_sorts<-function(sorts){
   sorts
 }
+
+#' Process fields
+#'
+#' @param sorts The field(s) to process
+#'
+#' @return properly formatted field(s)
+process_fields<-function(fields){
+  fields
+}
+
+#' Process limit
+#'
+#' @param limit The limit to process
+#'
+#' @return properly formatted limit
+process_limit<-function(limit){
+  limit
+}
+
+#' Process offset
+#'
+#' @param offset The offset to process
+#'
+#' @return properly formatted offset
+process_offset<-function(offset){
+  offset
+}
+
+
+#' Process Parameters for API call building
+#'
+#' @param filters filter(s) to process, or NULL
+#' @param sorts sort(s) to process, or NULL
+#' @param limit limit to process, or None
+#' @param offset offset to process, or None
+#'
+#' @return
+process_params<-function(filters=NULL, sorts=NULL, fields = NULL, limit=0, offset=0){
+  params<-list()
+  if(!is.null(filters)) params<-c(params, process_filters(filters))
+  if(!is.null(sorts)) params<-c(params, process_sorts(sorts))
+  if(!is.null(fields)) params<-c(params, process_fields(fields))
+  if(limit != 0) params<-c(params, process_limit(limit))
+  if(offset != 0) params<-c(params, process_offset(offset))
+  params
+}
+
+simple_list <- function(path, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  if(is.null(filters) && is.null(sorts) && is.null(fields)){
+    stop("Please include some query information")
+  }
+
+  params <- process_params(filters, sorts, fields, limit, offset)
+
+  result<-eliteprospects_api(path, params)
+  return(result$content$data)
+}
