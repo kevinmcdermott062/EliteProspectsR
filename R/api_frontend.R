@@ -27,49 +27,49 @@ getPlayerStats <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL
 }
 
 getGroupedStats <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="playerstats/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="playerstats/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listTransfers <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="transfers/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="transfers/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listLeagues <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="leagues/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="leagues/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listDrafts <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="drafts/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="drafts/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listTeams <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="teams/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="teams/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listStaff <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="staff/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="staff/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listArenas <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="arenas/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="arenas/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listSeasons <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="seasons/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="seasons/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listRetiredNumbers <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="retirednumbers/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="retirednumbers/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listCountries <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="countries/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="countries/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listLocalities <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="localities/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="localities/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 listAwards <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(simple_get(path="awards/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(simple_list(path="awards/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
