@@ -96,7 +96,7 @@ process_offset<-function(offset){
 #' @param limit limit to process, or None
 #' @param offset offset to process, or None
 #'
-#' @return
+#' @return properly formatted parameters
 process_params<-function(filters=NULL, sorts=NULL, fields = NULL, limit=0, offset=0){
   params<-list()
   if(!is.null(filters)) params<-c(params, process_filters(filters))
