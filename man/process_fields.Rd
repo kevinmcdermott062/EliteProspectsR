@@ -7,7 +7,7 @@
 process_fields(fields)
 }
 \arguments{
-\item{sorts}{The field(s) to process}
+\item{fields}{The field(s) to process}
 }
 \value{
 properly formatted field(s)

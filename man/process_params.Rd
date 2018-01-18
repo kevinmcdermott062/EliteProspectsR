@@ -12,6 +12,8 @@ process_params(filters = NULL, sorts = NULL, fields = NULL, limit = 0,
 
 \item{sorts}{sort(s) to process, or NULL}
 
+\item{fields}{field(s) to process, or NULL}
+
 \item{limit}{limit to process, or None}
 
 \item{offset}{offset to process, or None}

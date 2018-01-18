@@ -63,7 +63,7 @@ process_sorts<-function(sorts){
 
 #' Process fields
 #'
-#' @param sorts The field(s) to process
+#' @param fields The field(s) to process
 #'
 #' @return properly formatted field(s)
 process_fields<-function(fields){
@@ -93,6 +93,7 @@ process_offset<-function(offset){
 #'
 #' @param filters filter(s) to process, or NULL
 #' @param sorts sort(s) to process, or NULL
+#' @param fields field(s) to process, or NULL
 #' @param limit limit to process, or None
 #' @param offset offset to process, or None
 #'
