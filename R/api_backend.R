@@ -118,3 +118,16 @@ simple_list <- function(path, filters=NULL, sorts=NULL, fields=NULL, limit=0, of
   result<-eliteprospects_api(path, params)
   return(result$content$data)
 }
+
+layered_get <- function(family=NULL, id=NULL, item=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  if(is.null(family) || is.null(id) || is.null(item)){
+    stop("Please include some query information")
+  }
+
+  path<-paste0(family, "/", id, "/", item, "/")
+
+  params <- process_params(filters, sorts, fields, limit, offset)
+
+  result<-eliteprospects_api(path, params)
+  return(result$content$data)
+}

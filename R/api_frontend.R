@@ -14,29 +14,6 @@ getPlayerData <- function(player_id=NULL){
   return(result$content$data)
 }
 
-#' Get Player Stats
-#'
-#' @param player_id Player whos stats you wish to pull
-#' @param filters Any filters to apply
-#' @param sorts Any sorting to apply to results
-#' @param fields Specific fields to retrieve
-#' @param limit Maximum number of results returned
-#' @param offset Offset of returned results
-#'
-#' @return The players stats from the API
-#' @export
-getPlayerStats <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  if(!is.null(player_id) && is.numeric(player_id)){
-    path <- paste0("players/", as.character(player_id), "/stats")
-  } else {
-    stop("Please include a numerical player_id. To search for players, use searchPlayerID()")
-  }
-  params <- process_params(filters, sorts, fields, limit, offset)
-
-  result<-eliteprospects_api(path, params)
-  return(result$content$data)
-}
-
 #' Get Grouped Stats
 #'
 #' @param filters Any filters to apply
@@ -47,7 +24,7 @@ getPlayerStats <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL
 #'
 #' @return The stats grouped from the API
 #' @export
-getGroupedStats <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+listGroupedStats <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
   return(simple_list(path="playerstats/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
@@ -204,3 +181,79 @@ listLocalities <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offse
 listAwards <- function(filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
   return(simple_list(path="awards/", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
+
+#' Get Player Social Media
+#'
+#' @param player_id Player whos stats you wish to pull
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return The players stats from the API
+#' @export
+getPlayerSocialMedia <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  return(layered_get(family="player", id=player_id, item="medialinks", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+}
+
+#' Get Player Game Status
+#'
+#' @param player_id Player whos stats you wish to pull
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return The players stats from the API
+#' @export
+getPlayerGameStatus <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  return(layered_get(family="player", id=player_id, item="playergamestatus", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+}
+
+#' Get Player Stats
+#'
+#' @param player_id Player whos stats you wish to pull
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return The players stats from the API
+#' @export
+getPlayerStats <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  return(layered_get(family="player", id=player_id, item="stats", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+}
+
+#' Get Player Profile
+#'
+#' @param player_id Player whos stats you wish to pull
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return The players stats from the API
+#' @export
+getPlayerProfile <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  return(layered_get(family="player", id=player_id, item="profile", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+}
+
+#' Get Player Family
+#'
+#' @param player_id Player whos stats you wish to pull
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return The players stats from the API
+#' @export
+getPlayerFamily <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  return(layered_get(family="player", id=player_id, item="familyrelations", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+}
+
