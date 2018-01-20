@@ -26,7 +26,7 @@ getPlayerData <- function(player_id=NULL){
 #' @return The players stats from the API
 #' @export
 getPlayerSocialMedia <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(layered_get(family="players", id=player_id, item="medialinks", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(layered_get(path="players", id=player_id, item="medialinks", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 #' Get Player Game Status
@@ -41,7 +41,7 @@ getPlayerSocialMedia <- function(player_id=NULL, filters=NULL, sorts=NULL, field
 #' @return The players stats from the API
 #' @export
 getPlayerGameStatus <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(layered_get(family="players", id=player_id, item="playergamestatus", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(layered_get(path="players", id=player_id, item="playergamestatus", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 #' Get Player Stats
@@ -56,7 +56,7 @@ getPlayerGameStatus <- function(player_id=NULL, filters=NULL, sorts=NULL, fields
 #' @return The players stats from the API
 #' @export
 getPlayerStats <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(layered_get(family="players", id=player_id, item="stats", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(layered_get(path="players", id=player_id, item="stats", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 #' Get Player Profile
@@ -71,7 +71,7 @@ getPlayerStats <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL
 #' @return The players stats from the API
 #' @export
 getPlayerProfile <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(layered_get(family="players", id=player_id, item="profile", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(layered_get(path="players", id=player_id, item="profile", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }
 
 #' Get Player Family
@@ -86,5 +86,5 @@ getPlayerProfile <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NU
 #' @return The players stats from the API
 #' @export
 getPlayerFamily <- function(player_id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  return(layered_get(family="players", id=player_id, item="familyrelations", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
+  return(layered_get(path="players", id=player_id, item="familyrelations", filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset))
 }

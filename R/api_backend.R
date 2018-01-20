@@ -108,6 +108,16 @@ process_params<-function(filters=NULL, sorts=NULL, fields = NULL, limit=0, offse
   params
 }
 
+#' basic list request handler
+#'
+#' @param path The path to get a list of
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return the results of the built API call
 simple_list <- function(path, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
   if(is.null(filters) && is.null(sorts) && is.null(fields)){
     stop("Please include some query information")
@@ -119,12 +129,47 @@ simple_list <- function(path, filters=NULL, sorts=NULL, fields=NULL, limit=0, of
   return(result$content$data)
 }
 
-layered_get <- function(family=NULL, id=NULL, item=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
-  if(is.null(family) || is.null(id) || is.null(item)){
-    stop("Please include some query information")
+#' Base simple get handler
+#'
+#' @param path The path to get from
+#' @param id The specific ID to get
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return the results of the built API call
+simple_get <- function(path=NULL, id=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  if(is.null(path) || is.null(id)){
+    stop("Please include the query information")
+  }
+  path<-paste0(path, id)
+
+  params <- process_params(filters, sorts, fields, limit, offset)
+
+  result<-eliteprospects_api(path, params)
+  return(result$content$data)
+}
+
+#' Base nested/layered get handler
+#'
+#' @param path The path to get from
+#' @param id The specific ID to get
+#' @param item The subset/nest item to get
+#' @param filters Any filters to apply
+#' @param sorts Any sorting to apply to results
+#' @param fields Specific fields to retrieve
+#' @param limit Maximum number of results returned
+#' @param offset Offset of returned results
+#'
+#' @return the results of the built API call
+layered_get <- function(path=NULL, id=NULL, item=NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0){
+  if(is.null(path) || is.null(id) || is.null(item)){
+    stop("Please include the query information")
   }
 
-  path<-paste0(family, "/", id, "/", item, "/")
+  path<-paste0(path, "/", id, "/", item, "/")
 
   params <- process_params(filters, sorts, fields, limit, offset)
 
