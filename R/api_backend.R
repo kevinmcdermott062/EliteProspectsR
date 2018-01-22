@@ -49,7 +49,18 @@ print.eliteprospects_api <- function(x, ...) {
 #'
 #' @return properly formatted filter(s)
 process_filters<-function(filters){
-  filters
+  filter<-paste0(names(filters[1]),"=",filters[[1]])
+  if(length(filters)>1){
+    for(i in 2:length(filters)){
+      filter<-paste0(filter, "&", names(filters[i]),"=",filters[[i]])
+    }
+    filter<-utils::URLencode(filter, reserved=TRUE)
+    filter<-paste0("(",filter,")")
+  } else {
+    filter<-utils::URLencode(filter, reserved=TRUE)
+  }
+  filter<-list("filter"=filter)
+  return(filter)
 }
 
 #' Process sorts
@@ -58,7 +69,14 @@ process_filters<-function(filters){
 #'
 #' @return properly formatted sort(s)
 process_sorts<-function(sorts){
-  sorts
+  sort<-paste0(names(sorts[1]), ":", sorts[[1]])
+  if(length(sorts)>1){
+    for(i in 2:length(sorts)){
+      sort<-paste0(sort, ",", names(sorts[i]), ":", sorts[[1]])
+    }
+  }
+  sort<-list("sort"=sort)
+  return(sort)
 }
 
 #' Process fields
@@ -67,7 +85,9 @@ process_sorts<-function(sorts){
 #'
 #' @return properly formatted field(s)
 process_fields<-function(fields){
-  fields
+  field<-paste0(fields,collapse=",")
+  field<-list('fields'=field)
+  return(field)
 }
 
 #' Process limit
@@ -76,7 +96,11 @@ process_fields<-function(fields){
 #'
 #' @return properly formatted limit
 process_limit<-function(limit){
-  limit
+  if(is.numeric(limit) & length(limit)==1){
+    return(list("limit"=limit))
+  } else {
+    stop("Provide only a single numerical limit value")
+  }
 }
 
 #' Process offset
@@ -85,7 +109,11 @@ process_limit<-function(limit){
 #'
 #' @return properly formatted offset
 process_offset<-function(offset){
-  offset
+  if(is.numeric(offset) & length(offset)==1){
+    return(list("offset"=offset))
+  } else {
+    stop("Provide only a single numerical offset value")
+  }
 }
 
 
