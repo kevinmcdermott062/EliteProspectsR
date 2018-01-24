@@ -72,7 +72,7 @@ process_sorts<-function(sorts){
   sort<-paste0(names(sorts[1]), ":", sorts[[1]])
   if(length(sorts)>1){
     for(i in 2:length(sorts)){
-      sort<-paste0(sort, ",", names(sorts[i]), ":", sorts[[1]])
+      sort<-paste0(sort, ",", names(sorts[i]), ":", sorts[[i]])
     }
   }
   sort<-list("sort"=sort)
