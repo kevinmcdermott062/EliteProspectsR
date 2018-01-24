@@ -4,3 +4,4 @@
 .Ruserdata
 *.RProj
 inst/doc
+setapi.R
