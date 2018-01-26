@@ -14,11 +14,12 @@ test_that("API Calls build ok",{
 })
 
 test_that("Param Processes are Ok", {
-  expect_equal(process_filters(filters = list("a"="alice")), list("filter"="a%3Dalice"))
-  expect_equal(process_filters(filters = list("a"="alice", "b" = "bob")), list("filter"="(a%3Dalice%26b%3Dbob)"))
+  expect_equal(process_filters(filters = list("a"="alice")), list("filter"="a=alice"))
+  expect_equal(process_filters(filters = list("a"="alice", "b" = "bob")), list("filter"="a=alice,b=bob"))
   expect_equal(process_sorts(sorts = list("a"="asc")), list("sort"="a:asc"))
   expect_equal(process_sorts(sorts = list("a"="asc", "b" = "desc")), list("sort"="a:asc,b:desc"))
   expect_equal(process_fields(fields=c("a","b")), list("fields"="a,b"))
   expect_equal(process_limit(limit = 4), list("limit" = 4))
   expect_equal(process_offset(offset = 4), list("offset" = 4))
+  expect_equal(process_types(types = c("alice","bob")), list("type"="alice,bob"))
 })

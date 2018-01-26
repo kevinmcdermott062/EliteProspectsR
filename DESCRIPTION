@@ -1,10 +1,14 @@
 Package: EliteProspectsR
 Type: Package
 Title: Elite Prospects API
+Description: The Elite Prospects API allows for programmatic use of data from EliteProspects.com. 
+  This API wrapper for R allows for data collection or extraction from within R scripts. 
+  Please see the vignettes for information on using the API. 
+  Please acknowledge EliteProspects and this API wrapper package in any projects for which you use 
+  this package.
 Version: 0.0.1
 Author: Philip Bulsink
 Maintainer: Philip Bulsink <bulsinkp@gmail.com>
-Description: R API for EliteProspects (http://www.eliteprospects.com/).
 License: GPL (>= 3) + file LICENSE
 Imports:
   httr,
