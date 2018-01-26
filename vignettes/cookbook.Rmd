@@ -19,9 +19,13 @@ knitr::opts_chunk$set(
 #Introduction
 This vignette is based on the [EliteProspects API Cookbook](https://github.com/menmo/eliteprospects-api-documentation/blob/master/cookbook.md) by [@peterstark72](https://github.com/peterstark72). It will serve as a set of examples for using the EliteProspectsR package.
 
+```{r library}
+library(EliteProspectsR)
+```
+
 #Getting A Player's Career Stats
 
-You want the complete Wayne Gretzky career stats sorted by season.
+You want the complete Wayne Gretzky career stats.
 
 In order to get the career stats for a specific player, you need the player's EPID (EliteProspects ID). The easiest way to get the EPID is by searching for the player at [eliteprospects.com](eliteprospects.com) and extract the EPID form the URL of the player page. Wayne Gretzky's page is [http://www.eliteprospects.com/player.php?player=9678](http://www.eliteprospects.com/player.php?player=9678). The EPID is the last digits (9678).
 
@@ -29,22 +33,22 @@ In order to get the career stats for a specific player, you need the player's EP
 With the EPID, we can query the API:
 
 ```{r playerstats}
-url<-"http://api.eliteprospects.com/beta/playerstats?filter=player.id%3D9678&sort=season.startYear%3Aasc"
+gretzky <- getPlayerStats(player_id = 9678)
 ```
 
 ##Notes
 
-The query returns a list of PlayerStats objects. Each object represents the player's stats for a specific League, Season, GameType and Team. For exampe, if you just want Wayne Grezky's NHL playoff stats, filter by `"gameType=PLAYOFFS&league.id=7"`. The NHL league ID is 7. More information can be found in the Filter & Sorting vignette.
+The query returns a list of PlayerStats objects. Each object represents the player's stats for a specific League, Season, GameType and Team. For exampe, if you just want Wayne Grezky's NHL playoff stats, `filter` by `list("gameType"="PLAYOFFS", "league.id"="7")` (since the NHL league ID is 7). More information can be found in the Filter & Sorting vignette.
 
 #Getting EPID for an NHL player by name
 
 Maybe you want to get the EPID for an NHL player so that you can access the player's complete EP profile, without having to go online and retrieve the EPID manually as we did above. .
 
 ##API Call
-Lets say you want the EPID for Sidney Crosby. Use the search function with "q=Sidney Crosby" and "type=player" to restrict the search to only players (not teams). Since the search result includes the LatestPlayerStats object, we can use that to filter on NHL players, "filter=latestPlayerStats.league.id=7".
+Lets say you want the EPID for Sidney Crosby. Use the search function with "q=Sidney Crosby" and "type=player" to restrict the search to only players (not teams).
 
 ```{r search_player}
-url<-"http://api.eliteprospects.com/beta/search?type=player&q=Sidney Crosby&filter=latestPlayerStats.league.id=7"
+players_search<-search_EP(query = "Sidney Crosby", type='player')
 ```
 
 ##Notes
@@ -66,7 +70,7 @@ You want to access the latest transfers as seen on the main page of eliteprospec
 Query the transfers endpoint with "transferProbability=CONFIRMED" and "transferType=TRANSFER" filters, sorted by "transferDate:desc" and "id:desc":
 
 ```{r transfers}
-url<-"http://api.eliteprospects.com/beta/transfers?filter=transferType%3DTRANSFER%26transferProbability%3DCONFIRMED&sort=transferDate%3Adesc%2Cid%3Adesc"
+transfers<-listTransfers(filters = list("transferProbability"="CONFIRMED", "transferType"="TRANSFER"), sorts = list("transferDate"="desc", "id"="desc"))
 ```
 
 The response includes the player object, to- and from-team objects and transfer date.

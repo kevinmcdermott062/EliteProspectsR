@@ -11,7 +11,7 @@
 #'
 #' @return The search results
 #' @export
-search <- function(query=NULL, types = NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0, minScore=0){
+search_EP <- function(query=NULL, types = NULL, filters=NULL, sorts=NULL, fields=NULL, limit=0, offset=0, minScore=0){
   if(is.null(query)){
     stop("Please enter a query to search")
   }
