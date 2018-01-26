@@ -242,7 +242,7 @@ simple_search <- function(path=NULL, query=NULL, types = NULL, filters=NULL, sor
   params <- c(params, process_search_params(types = types, filters=filters, sorts=sorts, fields=fields, limit=limit, offset=offset, minScore=minScore))
 
   result<-eliteprospects_api(path, params)
-  return(result$content$data)
+  return(result$content)
 }
 
 #' Base nested/layered get handler

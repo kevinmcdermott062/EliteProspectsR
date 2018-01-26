@@ -48,7 +48,7 @@ Maybe you want to get the EPID for an NHL player so that you can access the play
 Lets say you want the EPID for Sidney Crosby. Use the search function with "q=Sidney Crosby" and "type=player" to restrict the search to only players (not teams).
 
 ```{r search_player}
-players_search<-search_EP(query = "Sidney Crosby", type='player')
+crosby<-search_EP(query = "Sidney Crosby", type='player')
 ```
 
 ##Notes
@@ -56,7 +56,7 @@ players_search<-search_EP(query = "Sidney Crosby", type='player')
 Sidney Crosby is a simple example, since you only get one hit. If, instead, we try "Corey Perry" we'll get >50 results because "Perry" is a common name. In this case, since we know Corey Perry is born in 1985, we can restrict the query to players born that year.
 
 ```{r search_player_filter}
-url<-"http://api.eliteprospects.com/beta/search?type=player&q=Corey Perry&filter=latestPlayerStats.league.id=7&yearOfBirth=1985"
+perry<-search_EP(query = "Corey Perry", type='player', filters = list('league.id'='7', 'yearOfBirth'='1985'))
 ```
 
 Again, see the Filter & Sort vignette for more information on slicing queries.
